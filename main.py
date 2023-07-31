@@ -1,5 +1,7 @@
 from fastapi import FastAPI
+from fastapi.templating import Jinja2Templates
 
+templates = Jinja2Templates(directory="templates")
 app = FastAPI()
 
 
@@ -64,6 +66,6 @@ async def root(message: str):
 
 
 @app.get("/decode/{morse_code}")
-async def root(morse_code: str):
+async def decode_morse(morse_code: str):
     decoded_message = decode_message(morse_code=morse_code)
     return {"message": decoded_message}
